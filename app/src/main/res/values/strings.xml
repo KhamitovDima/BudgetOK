@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name" translatable="false">BudgetOK</string>
+    <string name="general_error_caption">Что-то пошло не так</string>
+</resources>

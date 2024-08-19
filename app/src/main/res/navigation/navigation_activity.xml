@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_activity"
+    app:startDestination="@+id/host_screen">
+
+  <fragment
+      android:id="@+id/host_screen"
+      android:label="PanelFragment"
+      android:name="com.finance.budgetok.contexts.panel.features.PanelFragment" />
+
+  <fragment
+      android:id="@+id/sample_screen"
+      android:label="SampleFragment"
+      android:name="com.finance.budgetok.contexts.sample.features.SampleFragment" />
+
+</navigation>
