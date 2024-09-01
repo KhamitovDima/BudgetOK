@@ -86,8 +86,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.compose)
     implementation(libs.bundles.compose)
 
-    api(libs.androidx.navigation.fragmentKtx)
-
+    //api(libs.androidx.navigation.fragmentKtx)
+    api(libs.androidx.navigation.compose)
 
     implementation("androidx.room:room-runtime:2.5.1")
     ksp("androidx.room:room-compiler:2.5.1")

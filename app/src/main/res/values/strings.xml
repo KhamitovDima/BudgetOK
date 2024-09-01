@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name" translatable="false">BudgetOK</string>
-    <string name="general_error_caption">Что-то пошло не так</string>
+    <string name="general_error_caption">Something went wrong</string>
+    <string name="panel">Panel</string>
+    <string name="history">History</string>
+    <string name="report">Report</string>
+    <string name="settings">Settings</string>
 </resources>

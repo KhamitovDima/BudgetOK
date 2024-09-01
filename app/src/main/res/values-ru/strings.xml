@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="general_error_caption">Что-то пошло не так</string>
+    <string name="panel">Панель</string>
+    <string name="history">История</string>
+    <string name="report">Отчет</string>
+    <string name="settings">Настройки</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.finance.budgetok.contexts.panel.features
 
 import android.os.Bundle
+import android.util.Log
 import androidx.compose.material.Surface
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -48,12 +49,18 @@ class PanelFragment : CommonVMFragment(R.layout.sample_fragment) {
     ) { viewModel.eventsOwner }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d("qwerty", "onCreate")
         PanelComponent.factory.create(
             dependencies = findDependencies()
         )
             .inject(this)
 
         super.onCreate(savedInstanceState)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("qwerty", "onResume")
     }
 
     override fun onViewCreate() {
@@ -66,7 +73,7 @@ class PanelFragment : CommonVMFragment(R.layout.sample_fragment) {
                 FinanceScreen(
                     state = state,
                     onButtonClick = (::buttonClicked),
-                    modifier = Modifier.testTag(SAMPLE_FRAGMENT)
+                    modifier = Modifier.testTag(PANEL_FRAGMENT)
                 )
             }
         }
@@ -78,6 +85,8 @@ class PanelFragment : CommonVMFragment(R.layout.sample_fragment) {
     }
 
     companion object {
-        const val SAMPLE_FRAGMENT = "SampleFragment"
+        const val PANEL_FRAGMENT = "PanelFragment"
+
+        fun newInstance() = PanelFragment()
     }
 }
