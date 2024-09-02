@@ -1,10 +1,14 @@
 package com.finance.budgetok.contexts.panel.features.compose
 
+import android.content.ClipData
+import android.content.Intent
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.draganddrop.dragAndDropSource
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -20,6 +24,7 @@ import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draganddrop.DragAndDropTransferData
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.colorResource
@@ -46,6 +51,7 @@ fun FinanceScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
+            .padding(16.dp)
     ) {
         ExpandableSection(title = "Доходы", amount = "7 900 ₽", isExpandable = true) {
             // Содержимое секции доходов
@@ -71,22 +77,16 @@ fun IncomeSection() {
             .padding(vertical = 8.dp),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        items(listOf(
-            CategoryItemData("Тинькофф", "20 094 ₽", Icons.Default.Face, Color.Yellow, Color.Black),
-            CategoryItemData("Месячный фонд", "24 253 ₽", Icons.Default.Face, Color.Blue, Color.Black),
-            CategoryItemData("Подушка", "843 562,37 ₽", Icons.Default.Face, Color.Magenta, Color.Black),
-            CategoryItemData("Отдых", "6 530 ₽", Icons.Default.Face, Color.Cyan, Color.Black),
-            CategoryItemData("Тинькофф", "20 094 ₽", Icons.Default.Face, Color.Yellow, Color.Black),
-            CategoryItemData("Месячный фонд", "24 253 ₽", Icons.Default.Face, Color.Blue, Color.Black),
-            CategoryItemData("Подушка", "843 562,37 ₽", Icons.Default.Face, Color.Magenta, Color.Black),
-            CategoryItemData("Отдых", "6 530 ₽", Icons.Default.Face, Color.Cyan, Color.Black)
-        )) { item ->
+        items(getIncomeItems()) { item ->
             CategoryItem(
-                title = item.title,
-                amount = item.amount,
-                icon = item.icon,
-                backgroundColor = item.backgroundColor,
-                iconTint = item.iconTint
+                data = CategoryItemData(
+                    id = item.id,
+                    title = item.title,
+                    amount = item.amount,
+                    icon = item.icon,
+                    backgroundColor = item.backgroundColor,
+                    iconTint = item.iconTint
+                )
             )
         }
     }
@@ -117,12 +117,12 @@ fun ExpandableSection(
         ) {
             // Добавим стрелку, которая будет меняться в зависимости от состояния секции
             if (isExpandable) {
-            Icon(
-                imageVector = if (expanded) Icons.Default.KeyboardArrowDown else Icons.AutoMirrored.Filled.KeyboardArrowRight,
-                contentDescription = null,
-                modifier = Modifier.padding(end = 8.dp)
-            )
-                }
+                Icon(
+                    imageVector = if (expanded) Icons.Default.KeyboardArrowDown else Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                    contentDescription = null,
+                    modifier = Modifier.padding(end = 8.dp)
+                )
+            }
             Text(
                 text = title,
                 style = MaterialTheme.typography.h6,
@@ -138,83 +138,6 @@ fun ExpandableSection(
             content()
         }
     }
-}
-
-@Composable
-fun CategoryItem(
-    title: String,
-    amount: String,
-    icon: ImageVector,
-    backgroundColor: Color,
-    iconTint: Color,
-    modifier: Modifier = Modifier
-) {
-    Column(
-        modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        // Title Text
-        Text(
-            text = title,
-            style = TextStyle(
-                color = Color.Gray,
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Normal
-            ),
-            textAlign = TextAlign.Center
-        )
-
-        VSpacer(value = 8)
-
-        // Circle with Icon
-        Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier
-                .size(60.dp)
-                .background(
-                    color = backgroundColor,
-                    shape = CircleShape
-                )
-        ) {
-            Icon(
-                imageVector = icon,
-                contentDescription = null,
-                tint = iconTint,
-                modifier = Modifier.size(36.dp)
-            )
-        }
-
-        VSpacer(value = 8)
-
-        // Amount Text
-        Text(
-            text = amount,
-            style = TextStyle(
-                color = Color.Black,
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold
-            ),
-            textAlign = TextAlign.Center
-        )
-    }
-}
-
-// Модель данных
-data class CategoryItemData(
-    val title: String,
-    val amount: String,
-    val icon: ImageVector,
-    val backgroundColor: Color,
-    val iconTint: Color
-)
-
-fun getIncomeItems(): List<CategoryItemData> {
-    return listOf(
-        CategoryItemData("Тинькофф", "20 094 ₽", Icons.Default.Face, Color.Yellow, Color.Black),
-        CategoryItemData("Месячный фонд", "24 253 ₽", Icons.Default.Face, Color.Blue, Color.Black),
-        CategoryItemData("Подушка", "843 562,37 ₽", Icons.Default.Face, Color.Magenta, Color.Black),
-        CategoryItemData("Отдых", "6 530 ₽", Icons.Default.Face, Color.Cyan, Color.Black)
-    )
 }
 
 @Preview(showBackground = true)

@@ -94,4 +94,6 @@ dependencies {
 
     // Для поддержки Coroutines
     implementation("androidx.room:room-ktx:2.5.1")
+
+    implementation(libs.json)
 }

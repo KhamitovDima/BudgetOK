@@ -110,6 +110,7 @@ composeBom = "2024.04.01"
 
 roomVersion = "2.5.1"
 vk = "0.6"
+gson = "2.10.1"
 
 [libraries]
 android-mapsUtils = { module = "com.google.maps.android:android-maps-utils", version.ref = "mapUtils" }
@@ -198,6 +199,8 @@ network-retrofit-kotlinXSerializationConverter = { module = "com.jakewharton.ret
 network-okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 network-okhttp-loggingInterceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
 
+
+json = { module = "com.google.code.gson:gson", version.ref = "gson" }
 kotlinx-serializationJson = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serializationJson" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlinx-coroutines-playServices = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "playServices" }
