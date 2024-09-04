@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.res.AssetManager
 import com.finance.budgetok.contexts.panel.domain.di.PanelDomainModule
 import com.finance.budgetok.contexts.sample.domain.di.SampleDomainModule
+import com.finance.budgetok.infra.navigation.di.NavigationModule
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -12,7 +13,8 @@ import javax.inject.Singleton
 @Module(
     includes = [
         SampleDomainModule::class,
-        PanelDomainModule::class
+        PanelDomainModule::class,
+        NavigationModule::class
     ],
 )
 class AppScopeModule {

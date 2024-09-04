@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_panel_graph"
+    app:startDestination="@+id/panel_screen_view">
+
+    <fragment
+        android:id="@+id/panel_screen_view"
+        android:name="com.finance.budgetok.contexts.panel.features.mainpanel.PanelFragment"
+        android:label="fragment_panel_screen">
+
+        <action
+            android:id="@+id/action_profile_to_feedback"
+            app:destination="@id/navigation_dialog_graph"
+            />
+    </fragment>
+
+</navigation>
